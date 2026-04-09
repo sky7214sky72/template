@@ -1,0 +1,12 @@
+dependencies {
+    // core를 가져다 쓰겠다고 선언
+    implementation project(':core')
+
+    // 인프라 관련 의존성 추가
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // postgresql
+    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.8.3'
+}

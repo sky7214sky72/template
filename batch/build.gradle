@@ -1,0 +1,12 @@
+// 🔥 배치도 실행되는 앱이므로 bootJar 활성화!
+bootJar { enabled = true }
+jar { enabled = false }
+
+dependencies {
+    // 🔥 settings.gradle에 등록된 이름과 똑같이 맞춤
+    implementation project(':core')
+    implementation project(':infrastructure')
+
+    // 배치 관련 의존성만 추가 (web은 없음!)
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+}

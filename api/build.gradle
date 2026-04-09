@@ -1,0 +1,14 @@
+// 🔥 얘는 실행되는 앱이므로 bootJar 활성화!
+bootJar { enabled = true }
+jar { enabled = false }
+
+dependencies {
+    // 🔥 settings.gradle에 등록된 이름과 똑같이 맞춤
+    implementation project(':core')
+    implementation project(':infrastructure')
+
+    // API 서버에 필요한 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+}

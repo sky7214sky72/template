@@ -1,0 +1,8 @@
+rootProject.name = 'template'
+
+include (
+        'core',
+        'infrastructure',
+        'api',
+        'batch'
+)
