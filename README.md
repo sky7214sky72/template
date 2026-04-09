@@ -16,13 +16,13 @@
 
 본 프로젝트는 의존성 방향을 한 방향(Core)으로만 강제하기 위해 아래와 같이 모듈을 분리했습니다.
 
-
+```text
 boilerplate-root
 ├── 📂 module-core           # [중심] 비즈니스 로직의 심장 (프레임워크 의존성 X)
 ├── 📂 module-infrastructure # [Outbound] DB, 외부 API, Redis 등 하청업체
 ├── 📂 module-api            # [Inbound] 클라이언트 요청 처리 (REST API, 진입점)
 └── 📂 module-batch          # [Inbound] 스프링 배치 환경
-
+```
 
 ---
 
@@ -89,4 +89,3 @@ Web 계층의 `@RequestBody` DTO를 서비스 단까지 끌고 가지 마세요.
 | **Infra** | Spring Data JPA | `UserJpaRepository` | `UserRepository` (extends JpaRepo) |
 
 > 자신이 지금 코딩하고 있는 위치가 **Core 안쪽(주방)**인지, **외부(홀/창고)**인지 항상 의식하세요. Core는 "명령(Interface)"만 내리고, 진짜 궂은일(구현체)은 Infra가 알아서 합니다.
-```
