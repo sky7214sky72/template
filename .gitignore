@@ -43,6 +43,8 @@ Thumbs.db
 # === 환경 설정 (DB 비밀번호, 시크릿 키 등 유출 방지) ===
 **/application-local.yaml
 **/application-local.yml
+**/application-prod.yml
+**/application-prod.yml
 **/application-secret.yaml
 **/application-secret.yml
 .env
