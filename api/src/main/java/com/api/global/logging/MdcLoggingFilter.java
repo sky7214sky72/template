@@ -1,4 +1,4 @@
-package com.api.common.filter;
+package com.api.global.logging;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

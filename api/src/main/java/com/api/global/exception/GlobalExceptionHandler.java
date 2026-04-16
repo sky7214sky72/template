@@ -1,6 +1,6 @@
-package com.api.common.exception;
+package com.api.global.exception;
 
-import com.api.common.response.ApiResponse;
+import com.api.global.response.ApiResponse;
 import com.core.common.exception.BusinessException;
 import com.core.common.exception.ErrorCode;
 import java.util.stream.Collectors;

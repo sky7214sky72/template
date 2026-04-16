@@ -7,3 +7,14 @@ spring:
 server:
   port: 8080
 
+springdoc:
+  swagger-ui:
+    path: /docs # 기본값인 /swagger-ui.html 대신 /docs로 심플하게 접속
+    tags-sorter: alpha # 태그(컨트롤러) 이름 알파벳 순 정렬
+    operations-sorter: alpha # API 엔드포인트 이름 알파벳 순 정렬
+    display-request-duration: true # API 테스트 시 응답 속도 화면에 표시 (성능 튜닝용)
+  api-docs:
+    path: /api-docs # 기본값인 /v3/api-docs 대신 /api-docs로 심플하게 접속
+  packages-to-scan: com.api.presentation.controller
+
+

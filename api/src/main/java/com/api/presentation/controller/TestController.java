@@ -1,6 +1,6 @@
 package com.api.presentation.controller;
 
-import com.api.common.response.ApiResponse;
+import com.api.global.response.ApiResponse;
 import com.core.common.exception.BusinessException;
 import com.core.common.exception.ErrorCode;
 import org.springframework.web.bind.annotation.GetMapping;

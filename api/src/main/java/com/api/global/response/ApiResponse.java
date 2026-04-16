@@ -1,4 +1,4 @@
-package com.api.common.response;
+package com.api.global.response;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
