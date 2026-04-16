@@ -8,5 +8,8 @@ dependencies {
 
     // postgresql
     runtimeOnly 'org.postgresql:postgresql'
-    implementation 'io.hypersistence:hypersistence-utils-hibernate-7:3.17.0'
+    implementation 'io.hypersistence:hypersistence-utils-hibernate-70:3.14.0'
+
+    // P6Spy (DB 쿼리 로깅)
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 }
