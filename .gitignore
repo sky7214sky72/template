@@ -56,3 +56,7 @@ logs/
 
 # === 기타 ===
 HELP.md
+
+
+#QuryDSL 관련 파일
+**/src/main/generated/
