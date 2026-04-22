@@ -1,4 +1,4 @@
-package com.api.presentation.controller;
+package com.api.auth.controller;
 
 import com.api.global.response.ApiResponse;
 import com.core.common.exception.BusinessException;
