@@ -17,8 +17,9 @@ public enum ErrorCode {
 
   //3. 유저 도메인 에러
   USER_NOT_FOUND(404, "U001", "사용자를 찾을 수 없습니다."),
-  DUPLICATE_EMAIL(409, "U002", "이미 가입된 이메일입니다."),
-  DUPLICATE_SOCIAL(409, "U003", "이미 연동된 플랫폼입니다.");
+  SOCIAL_NOT_FOUND(404, "U002", "잘못된 경로입니다."),
+  DUPLICATE_EMAIL(409, "U003", "이미 가입된 이메일입니다."),
+  DUPLICATE_SOCIAL(409, "U004", "이미 연동된 플랫폼입니다.");
 
   private final int status;
   private final String code;

@@ -1,3 +1,12 @@
 spring:
   application:
     name: infrastructure
+
+
+oauth2:
+  naver:
+    token-uri: https://nid.naver.com/oauth2/token
+    me-uri: https://openapi.naver.com/v1/nid/me
+    redirect-uri: https://codeghost.cloud/
+    client-id: ${NAVER_CLIENT_ID}
+    client-secret: ${NAVER_CLIENT_SECRET}
