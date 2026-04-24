@@ -7,6 +7,15 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // Lettuce (비동기 Redis 클라이언트, Spring Boot 기본)
+    implementation 'io.lettuce:lettuce-core'
+
+    // Redisson (분산락, 고급 기능)
+    implementation 'org.redisson:redisson-spring-boot-starter:3.25.0'
+
+    // Jackson (JSON 직렬화)
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
     // postgresql
     runtimeOnly 'org.postgresql:postgresql'
     implementation 'io.hypersistence:hypersistence-utils-hibernate-70:3.14.0'
