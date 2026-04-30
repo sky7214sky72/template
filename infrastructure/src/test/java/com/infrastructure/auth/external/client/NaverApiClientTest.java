@@ -27,7 +27,7 @@ class NaverApiClientTest {
   @DisplayName("진짜 네이버 서버에 인가 코드를 던져서 토큰을 받아온다")
   void fetchRealNaverToken() {
     // 1단계에서 따온 코드를 여기에 붙여넣으세요 (일회용)
-    String realAuthCode = "pVScJnyiY2k0M0gjW_lbcxfiBNMziWW6knPrJEErx19VNBfm-Gdzs1fJKcejzXhCK6HmJPlpNmvcyAA-34bfUTrY9Qla5nRTPV1Tjt9J38TwxALTyTSeaoepzRSZlNRQ";
+    String realAuthCode = "일회용코드";
 
     // 실행
     SocialUserProfile profile = naverApiClient.fetch(realAuthCode);

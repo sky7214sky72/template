@@ -1,9 +1,9 @@
-// 🔥 얘는 실행되는 앱이므로 bootJar 활성화!
+// 얘는 실행되는 앱이므로 bootJar 활성화!
 bootJar { enabled = true }
 jar { enabled = false }
 
 dependencies {
-    // 🔥 settings.gradle에 등록된 이름과 똑같이 맞춤
+    // settings.gradle에 등록된 이름과 똑같이 맞춤
     implementation project(':core')
     implementation project(':infrastructure')
 
@@ -14,7 +14,6 @@ dependencies {
 
     // JSON 로그 출력
     implementation 'net.logstash.logback:logstash-logback-encoder:7.4'
-
 
     // Swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3'
