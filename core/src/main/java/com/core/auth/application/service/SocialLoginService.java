@@ -55,7 +55,7 @@ public class SocialLoginService implements SocialLoginUseCase {
     AuthToken authToken = generateTokenPort.generateToken(user);
 
     //리프레시 토큰 저장
-    saveRefreshTokenPort.saveRefreshToken(authToken.refreshToken(), user.getId().toString(),
+    saveRefreshTokenPort.saveRefreshToken(authToken.tokenId(), authToken.refreshToken(), user.getId().toString(),
         this.refreshTokenTtl);
 
     return authToken;
