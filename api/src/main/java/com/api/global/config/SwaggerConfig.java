@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import java.util.List;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -16,6 +17,14 @@ import org.springframework.context.annotation.Profile;
 public class SwaggerConfig {
 
   private static final String JWT_SCHEME_NAME = "JWT_TOKEN";
+
+  @Bean
+  public GroupedOpenApi totalApi() {
+    return GroupedOpenApi.builder()
+        .group("00. TOTAL-API")
+        .pathsToMatch("/api/**")
+        .build();
+  }
 
   @Bean
   public OpenAPI openAPI() {

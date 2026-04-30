@@ -1,4 +1,4 @@
-package com.infrastructure.auth.external.naver;
+package com.infrastructure.auth.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

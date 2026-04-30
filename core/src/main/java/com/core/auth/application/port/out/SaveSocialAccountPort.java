@@ -2,7 +2,7 @@ package com.core.auth.application.port.out;
 
 import com.core.auth.domain.User;
 
-public interface SaveUserPort {
+public interface SaveSocialAccountPort {
 
-  User save(User user);
+  void save(User user);
 }

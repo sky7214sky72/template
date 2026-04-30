@@ -5,6 +5,7 @@ import com.core.auth.application.port.out.FetchSocialProfilePort;
 import com.core.auth.application.port.out.GenerateTokenPort;
 import com.core.auth.application.port.out.LoadUserPort;
 import com.core.auth.application.port.out.SaveRefreshTokenPort;
+import com.core.auth.application.port.out.SaveSocialAccountPort;
 import com.core.auth.application.port.out.SaveUserPort;
 import com.core.auth.application.service.SocialLoginService;
 import com.infrastructure.global.config.properties.RedisProperties;
@@ -25,13 +26,15 @@ public class AuthUseCaseConfig {
       LoadUserPort loadUserPort,
       SaveUserPort saveUserPort,
       GenerateTokenPort generateTokenPort,
-      SaveRefreshTokenPort saveRefreshTokenPort) {
+      SaveRefreshTokenPort saveRefreshTokenPort,
+      SaveSocialAccountPort  saveSocialAccountPort) {
     return new SocialLoginService(
         fetchSocialProfilePort,
         loadUserPort,
         saveUserPort,
         generateTokenPort,
         saveRefreshTokenPort,
+        saveSocialAccountPort,
         redisProperties.refreshTtl()
     );
   }

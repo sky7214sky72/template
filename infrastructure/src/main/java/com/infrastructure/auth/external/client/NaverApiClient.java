@@ -5,7 +5,7 @@ import com.core.auth.domain.SocialProvider;
 import com.core.common.exception.BusinessException;
 import com.core.common.exception.ErrorCode;
 import com.infrastructure.auth.external.naver.NaverProfileResponse;
-import com.infrastructure.auth.external.naver.NaverProperties;
+import com.infrastructure.auth.properties.NaverProperties;
 import com.infrastructure.auth.external.naver.NaverTokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

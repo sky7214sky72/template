@@ -15,6 +15,5 @@ springdoc:
     display-request-duration: true # API 테스트 시 응답 속도 화면에 표시 (성능 튜닝용)
   api-docs:
     path: /api-docs # 기본값인 /v3/api-docs 대신 /api-docs로 심플하게 접속
-  packages-to-scan: com.api.presentation.controller
 
 
