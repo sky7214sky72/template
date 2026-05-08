@@ -5,12 +5,10 @@ import com.core.auth.application.port.out.SaveUserPort;
 import com.core.auth.domain.User;
 import com.core.common.exception.BusinessException;
 import com.core.common.exception.ErrorCode;
-import com.infrastructure.auth.persistence.entity.SocialAccountEntity;
 import com.infrastructure.auth.persistence.entity.UserEntity;
-import com.infrastructure.auth.persistence.repository.SocialAccountJpaRepository;
 import com.infrastructure.auth.persistence.repository.UserJpaRepository;
-import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +18,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserPersistenceAdapter implements LoadUserPort, SaveUserPort {
 
   private final UserJpaRepository userJpaRepository;
-  private final SocialAccountJpaRepository socialAccountJpaRepository;
 
   @Transactional(readOnly = true)
   @Override
   public Optional<User> loadUserByEmail(String email) {
     return userJpaRepository.findByEmail(email).map(UserEntity::toDomain);
+  }
+
+  @Transactional(readOnly = true)
+  @Override
+  public Optional<User> loadUserByUserId(UUID userId) {
+    return userJpaRepository.findById(userId).map(UserEntity::toDomain);
   }
 
   @Transactional
