@@ -14,10 +14,10 @@ public class RedisRefreshTokenAdapter implements SaveRefreshTokenPort {
 
   @Override
   public void saveRefreshToken(String tokenId, String refreshToken, String userId, long expired) {
-    String key = String.format("RT:%s:%s", userId, tokenId);
+    String key = "RT:" + refreshToken;
     redisTemplate.opsForValue().set(
         key,
-        refreshToken,
+        String.format("%s:%s", userId, tokenId),
         Duration.ofSeconds(expired)
     );
   }

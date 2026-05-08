@@ -7,7 +7,6 @@ import com.core.auth.application.port.out.FetchSocialProfilePort;
 import com.core.auth.application.port.out.GenerateTokenPort;
 import com.core.auth.application.port.out.LoadUserPort;
 import com.core.auth.application.port.out.SaveRefreshTokenPort;
-import com.core.auth.application.port.out.SaveSocialAccountPort;
 import com.core.auth.application.port.out.SaveUserPort;
 import com.core.auth.application.port.out.dto.SocialUserProfile;
 import com.core.auth.domain.SocialAccount;
@@ -26,7 +25,6 @@ public class SocialLoginService implements SocialLoginUseCase {
   private final SaveUserPort saveUserPort;
   private final GenerateTokenPort generateTokenPort;
   private final SaveRefreshTokenPort saveRefreshTokenPort;
-  private final SaveSocialAccountPort saveSocialAccountPort;
 
   private final long refreshTokenTtl;
 
@@ -38,24 +36,26 @@ public class SocialLoginService implements SocialLoginUseCase {
     User user = loadUserPort.loadUserByEmail(socialUserProfile.email())
         .orElseGet(() ->
             //유저가 없다면 User 객체 생성
-            saveUserPort.save(User.builder()
+            User.builder()
                 .email(socialUserProfile.email())
                 .role(UserRole.USER)
-                .socialAccounts(List.of(SocialAccount.builder()
-                    .socialProvider(socialUserProfile.socialProvider())
-                    .providerId(socialUserProfile.providerId())
-                    .build()))
-                .build())
+                .build()
         );
 
     // 소셜 계정 정보 저장
-    saveSocialAccountPort.save(user);
+    user.linkSocialAccount(SocialAccount.builder()
+        .socialProvider(command.socialProvider())
+        .providerId(socialUserProfile.providerId())
+        .build());
+
+    saveUserPort.save(user);
 
     //리프레시 토큰, 액세스 토큰 생성
     AuthToken authToken = generateTokenPort.generateToken(user);
 
     //리프레시 토큰 저장
-    saveRefreshTokenPort.saveRefreshToken(authToken.tokenId(), authToken.refreshToken(), user.getId().toString(),
+    saveRefreshTokenPort.saveRefreshToken(authToken.tokenId(), authToken.refreshToken(),
+        user.getId().toString(),
         this.refreshTokenTtl);
 
     return authToken;

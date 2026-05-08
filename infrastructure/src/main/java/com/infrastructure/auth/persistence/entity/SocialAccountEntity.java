@@ -43,11 +43,14 @@ public class SocialAccountEntity extends BaseTimeEntity implements Serializable 
   @Column(nullable = false)
   private String providerId;
 
-  public static SocialAccountEntity fromDomain(SocialAccount socialAccount, UserEntity userEntity) {
+  public static SocialAccountEntity fromDomain(SocialAccount socialAccount) {
     return SocialAccountEntity.builder()
         .socialProvider(socialAccount.getSocialProvider())
         .providerId(socialAccount.getProviderId())
-        .user(userEntity)
         .build();
+  }
+
+  void assignUser(UserEntity userEntity) {
+    this.user = userEntity;
   }
 }
