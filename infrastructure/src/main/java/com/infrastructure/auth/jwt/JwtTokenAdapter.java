@@ -19,6 +19,6 @@ public class JwtTokenAdapter implements GenerateTokenPort {
     String tokenId = UUID.randomUUID().toString();
     UUID refreshToken = UUID.randomUUID();
     String accessToken = jwtTokenProvider.createAccessToken(user);
-    return new AuthToken(tokenId, accessToken, refreshToken.toString());
+    return new AuthToken(accessToken, refreshToken.toString(), tokenId);
   }
 }
