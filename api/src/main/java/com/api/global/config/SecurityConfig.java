@@ -1,4 +1,4 @@
-package com.api.global.security;
+package com.api.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -12,7 +12,6 @@ import com.core.auth.application.port.out.dto.SocialUserProfile;
 import com.core.auth.domain.SocialAccount;
 import com.core.auth.domain.User;
 import com.core.auth.domain.UserRole;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +47,7 @@ public class SocialLoginService implements SocialLoginUseCase {
         .providerId(socialUserProfile.providerId())
         .build());
 
-    saveUserPort.save(user);
+    user = saveUserPort.save(user);
 
     //리프레시 토큰, 액세스 토큰 생성
     AuthToken authToken = generateTokenPort.generateToken(user);
