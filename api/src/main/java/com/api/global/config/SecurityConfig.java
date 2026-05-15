@@ -1,12 +1,18 @@
 package com.api.global.config;
 
+import com.api.auth.filter.JwtAuthenticationFilter;
+import com.api.auth.handler.JwtAuthenticationEntryPoint;
+import com.core.auth.application.port.in.VerifyTokenUseCase;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -15,7 +21,12 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+  private final VerifyTokenUseCase verifyTokenUseCase;
+  private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) {
@@ -37,11 +48,15 @@ public class SecurityConfig {
         // 5. 엔드포인트 권한 설정
         .authorizeHttpRequests(auth -> auth
             // 스웨거 관련 경로는 모두 통과
-            .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/docs", "/api-docs/**").permitAll()
-            // 지금은 테스트를 위해 모든 API를 열어둠 (나중에 JWT 필터 달고 닫을 예정!)
-            .anyRequest().permitAll()
+            .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/docs", "/api-docs/**",
+                "/api/v1/auth/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .addFilterBefore(new JwtAuthenticationFilter(verifyTokenUseCase),
+            UsernamePasswordAuthenticationFilter.class)
+        .exceptionHandling(handler ->
+            handler.authenticationEntryPoint(jwtAuthenticationEntryPoint)
         );
-
     return http.build();
   }
 

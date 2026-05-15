@@ -5,7 +5,10 @@ import com.core.common.exception.BusinessException;
 import com.core.common.exception.ErrorCode;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -42,6 +45,16 @@ public class GlobalExceptionHandler {
     return ResponseEntity
         .status(ErrorCode.INVALID_INPUT_VALUE.getStatus())
         .body(ApiResponse.fail(ErrorCode.INVALID_INPUT_VALUE.getCode(), errorMessage));
+  }
+
+  /**
+   * . 인가(권한 부족) 예외 처리
+   */
+  @ExceptionHandler({AccessDeniedException.class, AuthorizationDeniedException.class})
+  public ResponseEntity<ApiResponse<Void>> handleAccessDeniedException(Exception e) {
+    return ResponseEntity
+        .status(HttpStatus.FORBIDDEN)
+        .body(ApiResponse.fail(ErrorCode.FORBIDDEN.getCode(), ErrorCode.FORBIDDEN.getMessage()));
   }
 
   /**

@@ -9,17 +9,34 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
+
+  # Redis
+  data:
+    redis:
+      host: ${REDIS_URL}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
+      refresh-ttl: ${REDIS_TTL}
 
 oauth2:
   naver:
     token-uri: https://nid.naver.com/oauth2/token
     me-uri: https://openapi.naver.com/v1/nid/me
-    redirect-uri: https://codeghost.cloud/
+    redirect-uri: ${REDIRECT-URI}
     client-id: ${NAVER_CLIENT_ID}
     client-secret: ${NAVER_CLIENT_SECRET}
 
 jwt:
   secret: ${JWT_SECRET}
+  access-token-validity-in-seconds: 300 # 5분
+
+
+auth:
+  cookie:
+    name: refreshToken
+    secure: false
+    sameSite: Lax
+    domain: localhost

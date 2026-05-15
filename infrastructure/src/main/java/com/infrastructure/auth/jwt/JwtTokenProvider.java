@@ -2,6 +2,7 @@ package com.infrastructure.auth.jwt;
 
 import com.core.auth.domain.User;
 import com.infrastructure.auth.properties.JwtProperties;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.nio.charset.StandardCharsets;
@@ -30,5 +31,13 @@ public class JwtTokenProvider {
         .expiration(validity)
         .signWith(secretKey)
         .compact();
+  }
+
+  public Claims parseClaims(String accessToken) {
+    return Jwts.parser()
+        .verifyWith(secretKey)
+        .build()
+        .parseSignedClaims(accessToken)
+        .getPayload();
   }
 }

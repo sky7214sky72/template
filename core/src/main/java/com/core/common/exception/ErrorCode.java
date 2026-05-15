@@ -14,6 +14,9 @@ public enum ErrorCode {
   //2. 인증/인가 에러
   UNAUTHORIZED(401, "A001", "인증되지 않은 사용자입니다."),
   FORBIDDEN(403, "A002", "권한이 없는 사용자입니다."),
+  INVALID_TOKEN(401, "A003", "잘못된 토큰입니다."),
+  EXPIRED_TOKEN(401, "A004", "만료된 토큰입니다."),
+  UNSUPPORTED_TOKEN(401, "A005", "지원하지 않는 토큰입니다."),
 
   //3. 유저 도메인 에러
   USER_NOT_FOUND(404, "U001", "사용자를 찾을 수 없습니다."),

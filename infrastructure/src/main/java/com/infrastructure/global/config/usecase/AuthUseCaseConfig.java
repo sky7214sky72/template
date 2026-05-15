@@ -3,16 +3,19 @@ package com.infrastructure.global.config.usecase;
 import com.core.auth.application.port.in.LogoutUseCase;
 import com.core.auth.application.port.in.ReissueTokenUseCase;
 import com.core.auth.application.port.in.SocialLoginUseCase;
+import com.core.auth.application.port.in.VerifyTokenUseCase;
 import com.core.auth.application.port.out.DeleteRefreshTokenPort;
 import com.core.auth.application.port.out.FetchSocialProfilePort;
 import com.core.auth.application.port.out.GenerateTokenPort;
 import com.core.auth.application.port.out.LoadRefreshTokenPort;
 import com.core.auth.application.port.out.LoadUserPort;
+import com.core.auth.application.port.out.ParseTokenPort;
 import com.core.auth.application.port.out.SaveRefreshTokenPort;
 import com.core.auth.application.port.out.SaveUserPort;
 import com.core.auth.application.service.LogoutService;
 import com.core.auth.application.service.ReissueTokenService;
 import com.core.auth.application.service.SocialLoginService;
+import com.core.auth.application.service.VerifyTokenService;
 import com.infrastructure.global.config.properties.RedisProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -53,5 +56,10 @@ public class AuthUseCaseConfig {
   @Bean
   public LogoutUseCase logoutUseCase(DeleteRefreshTokenPort deleteRefreshTokenPort) {
     return new LogoutService(deleteRefreshTokenPort);
+  }
+
+  @Bean
+  public VerifyTokenUseCase verifyTokenUseCase(ParseTokenPort parseTokenPort) {
+    return new VerifyTokenService(parseTokenPort);
   }
 }
